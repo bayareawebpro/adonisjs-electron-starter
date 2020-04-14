@@ -1,3 +1,3 @@
+#!/usr/bin/env
 electron-packager ../ \
---overwrite \
---protocol=myapp
+--overwrite
