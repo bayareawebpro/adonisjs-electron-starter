@@ -10,7 +10,8 @@
   "private": true,
   "scripts": {
     "serve": "electron .",
-    "install": "node ace migration:run && node ace seed"
+    "install": "node ace migration:run && node ace seed",
+    "compile": "node ace build:app"
   },
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
