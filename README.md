@@ -1,6 +1,7 @@
 # Adonis.js Electron Starter Project
 
-> https://adonisjs.com/docs
+![Home](https://github.com/bayareawebpro/adonisjs-electron-starter/raw/master/preview.png)
+
 
 ### Installation
 ```js
@@ -14,4 +15,8 @@ npm run serve
 npm run compile
 ```
 
-![Home](https://github.com/bayareawebpro/adonisjs-electron-starter/raw/master/preview.png)
+> Edit ./build/build.sh for compiler options.
+
+> https://adonisjs.com/docs
+
+> https://www.electronjs.org/docs
