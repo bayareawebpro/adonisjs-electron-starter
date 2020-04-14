@@ -12,4 +12,4 @@ const Route = use('Route')
 */
 
 Route.on('/').render('welcome')
-Route.post('/', 'CommandController.index').as('command')
+Route.post('/command', 'CommandController.index').as('command')

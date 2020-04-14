@@ -1,6 +1,7 @@
 'use strict'
 
 class CommandController {
+
   constructor ({ socket, request }) {
     this.socket = socket
     this.request = request

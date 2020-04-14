@@ -2,7 +2,7 @@
  * Websocket Client
  */
 import Ws from '@adonisjs/websocket-client'
-const ws = Ws('ws://127.0.0.1:3333')
+window.ws = Ws('ws://127.0.0.1:3333')
 
 ws.on('open', (info) => {
   console.info('› Socket: Open',info)

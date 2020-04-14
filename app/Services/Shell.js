@@ -4,6 +4,7 @@ class Shell {
       const exec = require('child_process').exec;
       const child = exec(commands);
       child.stdout.setEncoding('utf8');
+      child.stderr.setEncoding('utf8');
       child.stdout.on('data', onStdout);
       child.stderr.on('data', onStderr);
       child.on('close', (code) => {
