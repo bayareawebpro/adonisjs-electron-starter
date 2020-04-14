@@ -4,13 +4,20 @@
 const server = require("../server")
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+ipcMain.on('ondragstart', (event, filePath) => {
+  event.sender.startDrag({
+    file: filePath,
+    icon: '/path/to/icon.png'
+  })
+})
 function createWindow() {
+
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 800, height: 600})
 
@@ -19,6 +26,7 @@ function createWindow() {
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
+    mainWindow.setProgressBar(0.5)
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -27,8 +35,9 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
-}
 
+
+}
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.

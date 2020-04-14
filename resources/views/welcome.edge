@@ -12,7 +12,14 @@
     <div id="title"></div>
     <div id="subtitle">
       <p>Broadcast: &nbsp;<span id="message"></span></p>
+  <a href="#" id="drag">item</a>
     </div>
   </section>
+  <script type="text/javascript" charset="utf-8">
+    document.getElementById('drag').ondragstart = (event) => {
+      event.preventDefault()
+      ipcRenderer.send('ondragstart', 'logo.svg')
+    }
+  </script>
 </body>
 </html>
