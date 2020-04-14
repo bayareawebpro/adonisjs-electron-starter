@@ -1,27 +1,34 @@
-import "@babel/polyfill";
+/**
+ * Websocket Client
+ */
 import Ws from '@adonisjs/websocket-client'
 const ws = Ws('ws://127.0.0.1:3333')
-ws.on('open', () => {
-  console.info('Sockets Open')
-  const chat = ws.subscribe('command')
-  chat.on('error', () => {
-    console.error('channel error')
-  })
-  chat.on('message', (message) => {
-    console.info({message})
-  })
-
+ws.on('open', (info) => {
+  console.info('› Socket: Open',info)
 })
-ws.on('error', () => {
-  console.error('error')
-})
+ws.on('error', (error) => console.error('› Socket: Error',error))
 ws.connect()
-//
 
-//
-// setInterval(()=>{
-//   ws.getSubscription('chat').emit('message', {
-//     username: window.username,
-//     body: 'Test'
-//   })
-// }, 1000)
+/**
+ * Websocket Channel
+ */
+const chat = ws.subscribe('command')
+chat.on('message', (message) => {
+  console.info('› SocketChannel: Message')
+  const el = document.getElementById('message')
+  el.innerText = message.body
+  setTimeout(()=>el.innerText = '', 900)
+})
+chat.on('error', () => {
+  console.error('› SocketChannel: Error')
+})
+
+/**
+ * Websocket Message
+ */
+const items = ['Ping', 'Pong', 'Ping', 'Pong', 'Ping', 'Pong']
+setInterval(()=>{
+  chat.emit('message', {
+    body: items[Math.floor(Math.random() * items.length)]
+  })
+}, 2000)

@@ -19,6 +19,7 @@ mix
     useBuiltIns: "entry",
     targets: "defaults"
   })
+
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.

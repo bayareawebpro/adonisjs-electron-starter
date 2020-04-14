@@ -38,7 +38,7 @@ section:before {
   z-index: -1;
 }
 
-.logo {
+#logo {
   background: url("/logo.svg") no-repeat;
   width: 36px;
   height: 33px;
@@ -48,7 +48,7 @@ section:before {
   animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 1.3s forwards;
 }
 
-.title {
+#title {
   background: url("/title.svg") no-repeat;
   width: 219px;
   height: 36px;
@@ -57,7 +57,7 @@ section:before {
   animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.2s forwards;
 }
 
-.subtitle {
+#subtitle {
   margin-top: 25px;
   color: #BDB3CB;
   font-size: 17px;
