@@ -1,30 +1,32 @@
 'use strict'
 
-const { Command } = require('@adonisjs/ace')
-const { promisify } = require('util')
-const { exec } = require('child_process')
+const {Command} = require('@adonisjs/ace')
+const {exec} = require('../Services/Shell')
 
 class Build extends Command {
 
-  static get signature () {
+  static get signature() {
     return 'build:app'
   }
 
-  static get description () {
+  static get description() {
     return 'Compile the electron application bundle.'
   }
 
-  get exec(){
-    return promisify(require('child_process').exec)
-  }
+  async handle(args, options) {
 
-  async handle (args, options) {
     this.info('Compiling Application Bundle...')
 
-    const {stdout, stderr} = await this.exec(`cd build && sh ./build.sh`)
-    this.info(stdout || stderr)
-
-    this.success('Application Bundle Compiled Successfully...')
+    exec('cd build && sh ./build.sh',
+      this.info.bind(this),
+      this.warn.bind(this)
+    )
+    .then((code)=>{
+      this.success('Application Bundle Compiled Successfully...')
+    })
+    .catch((code)=>{
+      this.success(`Process Exited with Code ${code}`)
+    })
   }
 }
 

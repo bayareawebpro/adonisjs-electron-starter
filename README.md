@@ -20,3 +20,20 @@ npm run compile
 > https://adonisjs.com/docs
 
 > https://www.electronjs.org/docs
+
+
+### Shell Service
+
+```javascript
+const {exec} = require('../Services/Shell')
+exec('ls ./',
+    (stdout)=>{},
+    (stderr)=>{}
+)
+.then(()=>{
+  //
+})
+.catch((code)=>{
+  //
+})
+```
