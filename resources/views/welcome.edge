@@ -16,15 +16,13 @@
     </div>
   </section>
   <script>
-
     console.log(electron)
-window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('drag').ondragstart = (event) => {
-    event.preventDefault()
-    electron.ipcRenderer.send('ondragstart', 'package.json')
-  }
-})
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('drag').ondragstart = (event) => {
+        event.preventDefault()
+        electron.ipcRenderer.send('ondragstart', 'package.json')
+      }
+    })
   </script>
-
 </body>
 </html>
