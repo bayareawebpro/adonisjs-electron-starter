@@ -1,0 +1,8 @@
+tmp
+.env
+.idea
+.history
+build/Provisioner-darwin-x64
+node_modules
+package-lock.json
+database/*.sqlite
