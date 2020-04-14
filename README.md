@@ -17,10 +17,10 @@ npm run compile
 
 > Edit ./build/build.sh for compiler options.
 
-> https://adonisjs.com/docs
 
 > https://www.electronjs.org/docs
-
+> https://adonisjs.com/docs
+> https://adonisjs.com/docs/4.1/websocket-client
 
 ### Shell Service
 

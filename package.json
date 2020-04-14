@@ -11,7 +11,11 @@
   "scripts": {
     "serve": "electron .",
     "install": "node ace migration:run && node ace seed",
-    "compile": "node ace build:app"
+    "compile": "node ace build:app",
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js --progress --hide-modules",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js --watch --progress --hide-modules",
+    "hot": "NODE_ENV=development webpack-dev-server --config=node_modules/laravel-mix/setup/webpack.config.js --inline --hot",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js --progress --hide-modules"
   },
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
@@ -24,12 +28,20 @@
     "@adonisjs/lucid": "^6.1.3",
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
-    "sqlite3": "^4.1.1"
+    "@adonisjs/websocket": "^1.0.12",
+    "@adonisjs/websocket-client": "^1.0.9",
+    "axios": "^0.19.2",
+    "sqlite3": "^4.1.1",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "electron": "^8.2.2",
     "electron-packager": "^14.2.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "core-js": "^3.6.5",
+    "laravel-mix": "^5.0.4",
+    "laravel-mix-polyfill": "^2.0.0",
+    "vue-template-compiler": "^2.6.11"
   },
   "autoload": {
     "App": "./app"
