@@ -3,26 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>Hello Adonis</title>
-    {{ style('style') }}
-    {{ script('script') }}
+    {{ style('app') }}
+    {{ script('app') }}
 </head>
 <body>
-  <section>
-    <div id="logo"></div>
-    <div id="title"></div>
-    <div id="subtitle">
-      <p>Broadcast: &nbsp;<span id="message"></span></p>
-      <a href="#" id="drag">item</a>
-    </div>
-  </section>
-  <script>
-    console.log(electron)
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('drag').ondragstart = (event) => {
-        event.preventDefault()
-        electron.ipcRenderer.send('ondragstart', 'package.json')
-      }
-    })
-  </script>
+  <div id="app">
+  </div>
 </body>
 </html>

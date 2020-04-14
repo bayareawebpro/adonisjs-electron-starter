@@ -4,25 +4,28 @@
 const server = require("../server")
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, path} = require('electron')
+const {app, BrowserWindow} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-
 
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 800,
       height: 600,
+      backgroundColor: '#1a202c',
       webPreferences: {
         preload: './preload.js'
       }
     })
 
-    // and load the index.html of the app.
-    mainWindow.loadURL(`http://localhost:3333`)
+    if(process.env.NODE_ENV === 'development'){
+      mainWindow.loadURL(`http://localhost:3000`)
+    }else{
+      mainWindow.loadURL(`http://localhost:3333`)
+    }
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools()

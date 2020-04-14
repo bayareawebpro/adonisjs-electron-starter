@@ -1,25 +1,23 @@
 let mix = require('laravel-mix');
 require('laravel-mix-polyfill');
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for your application, as well as bundling up your JS files.
- |
- */
-
-mix
-  .js('resources/js/script.js', 'public/script.js')
-  .polyfill({
-    enabled: true,
-    corejs: 3,
-    useBuiltIns: "entry",
-    targets: "defaults"
-  })
-
+require('laravel-mix-tailwind');
+require('laravel-mix-purgecss');
+mix.setPublicPath('public')
+mix.tailwind('./tailwind.config.js')
+mix.js('resources/js/app.js', 'public')
+mix.postCss('resources/css/app.pcss', 'public')
+mix.purgeCss()
+mix.polyfill({
+  enabled: true,
+  corejs: 3,
+  useBuiltIns: "entry",
+  targets: "defaults"
+})
+mix.browserSync({
+  proxy: 'http://localhost:3333',
+  host: 'localhost',
+  open: false
+})
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.
