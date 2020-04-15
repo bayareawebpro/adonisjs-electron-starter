@@ -21,11 +21,11 @@ ShellCommand.execute = async (command) => {
         .map((line) => line.split('\n'))
         .flat(1)
         .forEach((line) => {
-          channel.broadcast('command:output', line)
+          channel.broadcast('output', line)
         })
     })
     .catch((error) => {
-      channel.broadcast('command:output', error)
+      channel.broadcast('output', error)
     })
   }
 }

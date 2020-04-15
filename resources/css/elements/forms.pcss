@@ -1,0 +1,142 @@
+/**
+ * Form
+ */
+form {
+    @apply flex-none;
+}
+form .element{
+    @apply relative block mb-5;
+}
+
+/**
+ * Form Label
+ */
+label {
+    @apply block text-gray-500 text-sm font-bold mb-2;
+}
+
+/**
+ * Form Input
+ */
+.input {
+    @apply shadow rounded-lg w-full py-2 px-3;
+    @apply appearance-none leading-normal text-gray-200 bg-gray-800 border border-gray-700;
+    transition: all 60ms linear;
+    min-width: 90px;
+}
+.input:focus {
+    @apply outline-none shadow-outline border-blue-600;
+}
+.input:disabled{
+    @apply bg-gray-900 border-gray-800 text-gray-600;
+}
+.input-sm .input{
+    @apply p-1 text-sm;
+}
+
+/**
+ * Form Input Icons
+ */
+.input.icon {
+    text-indent: 24px;
+}
+.input.icon + i{
+    @apply absolute;
+    top: 13px; left: 13px;
+}
+
+/**
+ * Form Search Input
+ */
+.input[type=search] {
+    @apply rounded-full w-full;
+}
+
+/**
+ * Form Select Input
+ */
+select.input {
+    @apply border-gray-700 border border-l-8 cursor-pointer;
+}
+select[multiple].input{
+    @apply p-0 bg-black;
+}
+select[multiple].input option{
+    @apply p-2 m-0 bg-gray-800 leading-loose;
+}
+select[multiple].input option[selected],
+select[multiple].input option[checked],
+select[multiple].input option:checked{
+    @apply bg-green-600 text-gray-900 !important;
+}
+
+/**
+ * Form Switch Input
+ */
+.switch {
+    @apply flex flex-row flex-wrap m-0 p-0 cursor-pointer;
+}
+.switch .label{
+    @apply ml-3 inline-flex self-center font-normal cursor-pointer;
+}
+.switch-well{
+    @apply relative w-16 h-8;
+}
+.switch-well input {
+    @apply hidden;
+}
+.switch-well .slider {
+    @apply absolute rounded-full bg-gray-800 inset-0 border border-gray-700;
+    min-width: 70px !important;
+    transition: .4s;
+}
+.switch-well .slider:before {
+    @apply absolute rounded-full w-6 h-6 bg-gray-600;
+    transition: .4s;
+    content: "";
+    bottom: 3px;
+    left: 4px;
+}
+.slider:focus{
+    @apply outline-none shadow-outline border border-blue-500;
+}
+.switch input:checked + .slider {
+    @apply bg-blue-500 border-blue-700;
+}
+.switch input:checked + .slider:before {
+    transform: translateX(36px);
+    @apply bg-blue-200;
+}
+.switch input:disabled + .slider {
+    @apply bg-gray-900 border-gray-700 cursor-not-allowed !important;
+    box-shadow: none;
+}
+
+
+/**
+ * Radio
+ */
+input.input[type=radio]{
+    @apply inline-block rounded-full p-0 border-2 self-center;
+    @apply cursor-pointer;
+    width: 3em !important;
+    min-width: 3em !important;
+    min-height: 1.6em !important;
+    height: 1.6em !important;
+}
+input.input[type=radio]:checked{
+    @apply bg-blue-500 border-blue-700;
+}
+
+/**
+ * Help & Invalid
+ */
+.input.invalid {
+    @apply border-red-500;
+}
+p.help {
+    @apply block text-xs text-gray-400;
+}
+p.help.invalid{
+    @apply text-red-500 italic;
+}

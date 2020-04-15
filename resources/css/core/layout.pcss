@@ -1,0 +1,59 @@
+[v-cloak] {
+    @apply hidden
+}
+html {
+    @apply h-full;
+    @apply text-gray-200 antialiased leading-normal;
+    @apply bg-gray-900;
+}
+html, body {
+    @apply h-full;
+}
+#wrapper {
+    @apply min-h-full h-auto overflow-x-hidden;
+    @apply flex flex-col flex-grow;
+}
+#header {
+    @apply flex flex-row flex-shrink;
+    @apply border-b border-gray-800;
+    @apply bg-gray-900 shadow-xl;
+    @apply z-50;
+}
+#header .brand{
+    @apply block p-4;
+}
+#pushMenuAction{
+    @apply flex p-4 self-center;
+}
+#pushMenuAction + .brand{
+    @apply block px-0;
+}
+#content {
+    @apply flex flex-row flex-grow;
+}
+aside.sidebar {
+    @apply flex flex-col z-40;
+}
+#main {
+    @apply flex flex-col flex-grow w-full min-w-full;
+}
+#footer {
+    @apply border-t border-gray-800;
+    @apply flex flex-row flex-shrink p-2;
+    @apply bg-gray-900 shadow-lg z-50;
+    @apply p-3 z-50;
+}
+#footer p{
+    @apply text-xs text-center mx-auto text-gray-500;
+}
+.layout{
+    @apply relative p-4 !important;
+}
+.layout-centered{
+    @apply layout justify-center content-center w-full max-w-4xl mx-auto p-4;
+}
+@screen md {
+    #main {
+        @apply w-auto min-w-0 !important;
+    }
+}

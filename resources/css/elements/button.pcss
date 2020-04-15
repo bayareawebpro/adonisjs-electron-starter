@@ -1,0 +1,188 @@
+
+/**
+ * Sizes
+ */
+.btn-xs{
+    @apply px-2 text-xs leading-snug !important
+}
+.btn-sm{
+    @apply px-3 text-sm leading-snug !important
+}
+.btn-lg{
+    @apply px-4 text-xl leading-normal !important
+}
+.btn-xl{
+    @apply px-5 text-xl leading-loose !important
+}
+.btn-block{
+    @apply w-full !important
+}
+.btn i.fa{
+    @apply self-center mr-1 !important;
+}
+/**
+ * Primary States
+ */
+.btn-active{
+    @apply no-underline !important;
+    @apply text-white !important;
+}
+/**
+ * Applied States
+ */
+.btn,
+.btn[disabled],
+.btn.disabled{
+    transition: all ease-in-out 120ms;
+    @apply inline-block !important;
+    @apply font-bold no-underline leading-normal;
+    @apply rounded px-4 py-1;
+    @apply border-gray-600;
+    @apply bg-gray-800;
+    @apply text-white;
+    @apply shadow;
+}
+.btn:focus{
+    @apply outline-none shadow-outline !important;
+}
+.btn:hover,
+.btn.active,
+.btn.loading,
+.btn.router-link-active,
+.btn.router-link-exact-active{
+    @apply btn-active;
+    @apply bg-gray-700;
+}
+.btn.active,
+.btn.loading,
+.btn.router-link-active,
+.btn.router-link-exact-active,
+.btn[disabled],
+.btn.disabled{
+    @apply cursor-not-allowed !important;
+}
+.btn[disabled],
+.btn.disabled{
+    @apply bg-gray-800 !important;
+    @apply cursor-not-allowed !important;
+    @apply opacity-50;
+}
+
+/**
+ * Green Style
+ */
+.btn-green.active,
+.btn-green.loading,
+.btn-green.router-link-active,
+.btn-green.router-link-exact-active,
+.btn-green:hover:not([disabled]){
+    @apply bg-green-700;
+}
+.btn-green,
+.btn-green[disabled],
+.btn-green.disabled{
+    @apply border-l-4;
+    @apply border-green-600;
+}
+
+/**
+ * Purple Style
+ */
+.btn-purple.active,
+.btn-purple.loading,
+.btn-purple.router-link-active,
+.btn-purple.router-link-exact-active,
+.btn-purple:hover:not([disabled]){
+    @apply bg-purple-700;
+}
+.btn-purple,
+.btn-purple[disabled],
+.btn-purple.disabled{
+    @apply border-l-4;
+    @apply border-purple-600;
+}
+
+/**
+ * Indigo Style
+ */
+.btn-indigo.active,
+.btn-indigo.loading,
+.btn-indigo.router-link-active,
+.btn-indigo.router-link-exact-active,
+.btn-indigo:hover:not([disabled]){
+    @apply bg-indigo-700;
+}
+.btn-indigo,
+.btn-indigo[disabled],
+.btn-indigo.disabled{
+    @apply border-l-4;
+    @apply border-indigo-600;
+}
+
+/**
+ * Blue Style
+ */
+.btn-blue.active,
+.btn-blue.loading,
+.btn-blue.router-link-active,
+.btn-blue.router-link-exact-active,
+.btn-blue:hover:not([disabled]){
+    @apply bg-blue-700;
+}
+.btn-blue,
+.btn-blue[disabled],
+.btn-blue.disabled{
+    @apply border-l-4;
+    @apply border-blue-600;
+}
+
+/**
+ * Yellow Style
+ */
+.btn-yellow.active,
+.btn-yellow.loading,
+.btn-yellow.router-link-active,
+.btn-yellow.router-link-exact-active,
+.btn-yellow:hover:not([disabled]){
+    @apply bg-yellow-700;
+}
+.btn-yellow,
+.btn-yellow[disabled],
+.btn-yellow.disabled{
+    @apply border-l-4;
+    @apply border-yellow-600;
+}
+
+/**
+ * Red Style
+ */
+.btn-red.active,
+.btn-red.loading,
+.btn-red.router-link-active,
+.btn-red.router-link-exact-active,
+.btn-red:hover:not([disabled]){
+    @apply bg-red-700;
+}
+.btn-red,
+.btn-red[disabled],
+.btn-red.disabled{
+    @apply border-l-4;
+    @apply border-red-600;
+}
+
+/**
+ * Red Style
+ */
+.btn-gray.active,
+.btn-gray.loading,
+.btn-gray.router-link-active,
+.btn-gray.router-link-exact-active,
+.btn-gray:hover:not([disabled]){
+    @apply bg-gray-700;
+}
+.btn-gray,
+.btn-gray[disabled],
+.btn-gray.disabled{
+    @apply border-l-4;
+    @apply border-gray-600;
+}

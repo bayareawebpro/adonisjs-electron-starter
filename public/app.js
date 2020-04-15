@@ -4502,8 +4502,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    execute: function execute() {
+    clear: function clear() {
       this.output = [];
+    },
+    execute: function execute() {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/command', {
         command: this.command
       }).catch(function (error) {
@@ -4514,7 +4516,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    ws.subscribe('command').on('command:output', function (message) {
+    ws.subscribe('command').on('output', function (message) {
       _this.output.push(message);
     });
   }
@@ -20322,9 +20324,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("v-command")], 1)
+  return _c("div", { attrs: { id: "wrapper" } }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "bg-gray-900", attrs: { id: "content" } }, [
+      _c("main", { attrs: { id: "main" } }, [
+        _c(
+          "div",
+          { staticClass: "layout-centered text-center py-12" },
+          [_c("v-command")],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { attrs: { id: "header" } }, [
+      _c("a", { staticClass: "brand", attrs: { href: "/" } }, [
+        _c("span", [_vm._v("PHP")]),
+        _c("em", [_vm._v("Provisioner")])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "flex flex-grow justify-end pr-4" }, [
+        _c("li", { staticClass: "block relative self-center" }, [
+          _c("button", { staticClass: "btn btn-gray btn-sm" }, [
+            _vm._v("\n          Save\n        ")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { attrs: { id: "footer" } }, [
+      _c("p", [_vm._v("© 2020 Dan Alvidrez - All Rights Reserved.")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -20389,40 +20434,47 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.command,
-            expression: "command"
-          }
-        ],
-        domProps: { value: _vm.command },
-        on: {
-          keydown: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
+      _c("div", { staticClass: "grid mb-2" }, [
+        _c("div", { staticClass: "grid-item flex-grow" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.command,
+                expression: "command"
+              }
+            ],
+            staticClass: "input",
+            domProps: { value: _vm.command },
+            on: {
+              keydown: function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.execute($event)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.command = $event.target.value
+              }
             }
-            return _vm.execute($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.command = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-blue", on: { click: _vm.execute } },
-        [_vm._v("\n    Run\n  ")]
-      ),
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid-item flex-shrink" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-lg btn-blue", on: { click: _vm.execute } },
+            [_vm._v("\n        Run\n      ")]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("v-console", {
         model: {
