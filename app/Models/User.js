@@ -26,9 +26,7 @@ class User extends Model {
    * work. Since features like `refreshTokens` or
    * `rememberToken` will be saved inside the
    * tokens table.
-   *
    * @method tokens
-   *
    * @return {Object}
    */
   tokens () {

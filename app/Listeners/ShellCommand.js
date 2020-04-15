@@ -2,21 +2,27 @@
 
 const ShellCommand = exports = module.exports = {}
 
-const {exec} = require('../Services/Shell')
+const SSH = require('node-ssh')
+const websocket = use('Ws')
+const files = require('fs')
 
-const ws = use('Ws')
+ShellCommand.local = async ({host, port, user, key, cwd, command}) => {
 
-ShellCommand.execute = async (command) => {
-  const channel = ws
+  // Get the broadcasting channel
+  const channel = await websocket
     .getChannel('command')
     .topic('command')
 
+  // If the channel is listening
   if (channel) {
-    const output = []
+    let output = []
     await exec(command,
       (stdOut) => output.push(stdOut),
       (stdErr) => output.push(stdErr),
-    ).then(() => {
+    )
+    .catch((error)=>output.push(error.toString()))
+    .finally(() =>{
+      channel.broadcast('done')
       output
         .map((line) => line.split('\n'))
         .flat(1)
@@ -24,8 +30,40 @@ ShellCommand.execute = async (command) => {
           channel.broadcast('output', line)
         })
     })
-    .catch((error) => {
-      channel.broadcast('output', error)
+  }
+}
+
+ShellCommand.remote = async ({host, port, user, key, cwd, command}) => {
+
+  // Get the broadcasting channel
+  const channel = await websocket
+    .getChannel('command')
+    .topic('command')
+
+  // If the channel is listening
+  if (channel) {
+    let output = []
+    const ssh = new SSH()
+    ssh.connect({
+      host: host,
+      port: port,
+      username: user,
+      privateKey: files.readFileSync(key, 'utf8')
+    })
+    .catch((error)=>output.push(error.toString()))
+    .then(() => ssh.exec(command, [], {
+      onStdout: (chunk) => output.push(chunk.toString('utf8')),
+      onStderr: (chunk) =>output.push(chunk.toString('utf8')),
+      cwd: cwd,
+    }))
+    .finally(()=>{
+      channel.broadcast('done')
+      output
+        .map((line) => line.split('\n'))
+        .flat(1)
+        .forEach((line) => {
+          channel.broadcast('output', line)
+        })
     })
   }
 }

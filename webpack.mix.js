@@ -13,11 +13,11 @@ mix.polyfill({
   useBuiltIns: "entry",
   targets: "defaults"
 })
-mix.browserSync({
-  proxy: 'http://localhost:3333',
-  host: 'localhost',
-  open: false
-})
+// mix.browserSync({
+//   proxy: 'http://localhost:3333',
+//   host: 'localhost',
+//   open: false
+// })
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.

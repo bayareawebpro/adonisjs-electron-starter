@@ -12,4 +12,5 @@ const Route = use('Route')
 */
 
 Route.on('/').render('welcome')
+Route.on('/about').render('about')
 Route.post('/command', 'CommandController.index').as('command')

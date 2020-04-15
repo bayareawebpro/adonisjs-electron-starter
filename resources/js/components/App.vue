@@ -7,12 +7,12 @@
   <div id="wrapper">
     <header id="header">
       <a class="brand" href="/">
-        <span>PHP</span><em>Provisioner</em>
+        <span>Provisioner</span><em>Desktop</em>
       </a>
       <ul class="flex flex-grow justify-end pr-4">
         <li class="block relative self-center">
           <button class="btn btn-gray btn-sm">
-            Save
+            Save Recipe
           </button>
         </li>
       </ul>

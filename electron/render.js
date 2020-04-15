@@ -1,7 +1,7 @@
 'use strict'
 
-//Adonis server
-const server = require("../server")
+// Boot Adonis Backend Server
+let server = require("../server")
 
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
@@ -10,35 +10,38 @@ const {app, BrowserWindow} = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+// Create the browser window.
 function createWindow() {
-    // Create the browser window.
-    mainWindow = new BrowserWindow({
-      width: 1024,
-      height: 768,
-      backgroundColor: '#1a202c',
-      webPreferences: {
-        preload: './preload.js'
-      }
-    })
-
-    if(process.env.NODE_ENV !== 'development'){
-      mainWindow.loadURL(`http://localhost:3000`)
-    }else{
-      mainWindow.loadURL(`http://localhost:3333`)
+  mainWindow = new BrowserWindow({
+    width: 1600,
+    height: 1200,
+    backgroundColor: '#1a202c',
+    webPreferences: {
+      preload: './preload.js'
     }
+  })
 
-    // Open the DevTools.
+  mainWindow.loadURL(`http://localhost:3333`)
+  // if(process.env.NODE_ENV === 'development'){
+  //   mainWindow.loadURL(`http://localhost:3000`)
+  // }else{
+  // }
+
+  // Open the DevTools.
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools()
-    mainWindow.setProgressBar(0.5)
+  }
+  //mainWindow.setProgressBar(0.5)
 
-    // Emitted when the window is closed.
-    mainWindow.on('closed', function () {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        mainWindow = null
-    })
+  // Emitted when the window is closed.
+  mainWindow.on('closed', function () {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    mainWindow = null
+  })
 }
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -46,19 +49,20 @@ app.on('ready', createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+  //app.quit() //Nah
 })
 
 // On OS X it's common to re-create a window in the app when the
 // dock icon is clicked and there are no other windows open.
 app.on('activate', function () {
-    if (mainWindow === null) {
-        createWindow()
-    }
+  if (mainWindow === null) {
+    createWindow()
+  }
 })
 
 // In this file you can include the rest of your app's specific main process

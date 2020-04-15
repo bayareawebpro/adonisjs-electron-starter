@@ -1,3 +1,3 @@
 const Event = use('Event')
 
-Event.on('shell::command', 'ShellCommand.execute')
+Event.on('shell::command', 'ShellCommand.remote')
