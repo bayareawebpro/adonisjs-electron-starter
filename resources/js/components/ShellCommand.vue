@@ -52,9 +52,9 @@
       <div class="grid-item w-1/5">
         <input class="input" v-model="user" @keydown.enter="execute" placeholder="Username">
       </div>
-<!--      <div class="grid-item w-1/5">-->
-<!--        <input class="input" v-model="host" @keydown.enter="execute" placeholder="Host">-->
-<!--      </div>-->
+      <div class="grid-item w-1/5">
+        <input class="input" v-model="host" @keydown.enter="execute" placeholder="Host">
+      </div>
       <div class="grid-item w-1/5">
         <input class="input" v-model="port" @keydown.enter="execute" placeholder="Port">
       </div>
