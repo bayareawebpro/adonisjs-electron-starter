@@ -5,8 +5,9 @@ const ShellCommand = exports = module.exports = {}
 const SSH = require('node-ssh')
 const websocket = use('Ws')
 const files = require('fs')
+const {exec} = require('../Services/Shell')
 
-ShellCommand.local = async ({host, port, user, key, cwd, command}) => {
+ShellCommand.local = async ({command}) => {
 
   // Get the broadcasting channel
   const channel = await websocket

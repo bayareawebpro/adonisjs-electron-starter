@@ -1,10 +1,19 @@
 'use strict'
 
 // Boot Adonis Backend Server
-let server = require("../server")
+const server = require("../server")
 
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+
+// Enable live reload for all the files inside your project directory
+
+// Enable live reload for Electron too
+require('electron-reload')(`${__dirname}/../`, {
+  // Note that the path to electron may vary according to the main file
+  electron: require(`${__dirname}/../node_modules/electron`),
+  server: require(`${__dirname}/../server`),
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -24,7 +33,6 @@ function createWindow() {
   mainWindow.loadURL(`http://localhost:3333`)
   // if(process.env.NODE_ENV === 'development'){
   //   mainWindow.loadURL(`http://localhost:3000`)
-  // }else{
   // }
 
   // Open the DevTools.
@@ -54,7 +62,6 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-  //app.quit() //Nah
 })
 
 // On OS X it's common to re-create a window in the app when the

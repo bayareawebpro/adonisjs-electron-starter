@@ -11,6 +11,5 @@ const Route = use('Route')
 | http://adonisjs.com/docs/4.1/routing
 */
 
-Route.on('/').render('welcome')
-Route.on('/about').render('about')
-Route.post('/command', 'CommandController.index').as('command')
+Route.on('/').render('app')
+//Route.post('/command', 'CommandController.index').as('command')

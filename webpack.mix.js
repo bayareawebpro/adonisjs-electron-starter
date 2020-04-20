@@ -6,7 +6,7 @@ mix.setPublicPath('public')
 mix.tailwind('./tailwind.config.js')
 mix.js('resources/js/app.js', 'public')
 mix.postCss('resources/css/app.pcss', 'public')
-mix.purgeCss()
+//mix.purgeCss()
 mix.polyfill({
   enabled: true,
   corejs: 3,
