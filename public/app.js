@@ -44112,7 +44112,7 @@ var staticRenderFns = [
       _c("ul", { staticClass: "flex flex-grow justify-end pr-4" }, [
         _c("li", { staticClass: "block relative self-center" }, [
           _c("button", { staticClass: "btn btn-gray btn-sm" }, [
-            _vm._v("\n          Save Recipe\n        ")
+            _vm._v("\n          Servers\n        ")
           ])
         ])
       ])

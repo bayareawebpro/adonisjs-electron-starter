@@ -12,7 +12,7 @@
       <ul class="flex flex-grow justify-end pr-4">
         <li class="block relative self-center">
           <button class="btn btn-gray btn-sm">
-            Save Recipe
+            Servers
           </button>
         </li>
       </ul>
