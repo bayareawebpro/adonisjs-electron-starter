@@ -9,13 +9,13 @@
       <a class="brand" href="/">
         <span>Provisioner</span><em>Desktop</em>
       </a>
-      <ul class="flex flex-grow justify-end pr-4">
-        <li class="block relative self-center">
-          <button class="btn btn-gray btn-sm">
-            Servers
-          </button>
-        </li>
-      </ul>
+<!--      <ul class="flex flex-grow justify-end pr-4">-->
+<!--        <li class="block relative self-center">-->
+<!--          <button class="btn btn-gray btn-sm">-->
+<!--            Servers-->
+<!--          </button>-->
+<!--        </li>-->
+<!--      </ul>-->
     </header>
     <section id="content" class="bg-gray-900">
       <main id="main">

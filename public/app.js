@@ -27578,7 +27578,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _shebang__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shebang */ "./resources/js/components/shebang.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var _shebang__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shebang */ "./resources/js/components/shebang.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.vue");
@@ -27593,10 +27593,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       output: [],
-      port: '22',
-      user: 'forge',
-      key: '/Users/builder/.ssh/id_rsa',
-      host: "138.68.244.60" || false,
+      host: process.env.MIX_SSH_HOST || '',
+      port: process.env.MIX_SSH_PORT || '22',
+      user: process.env.MIX_SSH_USER || '',
+      key: process.env.MIX_SSH_KEY || '',
       cwd: '/home/forge',
       command: _shebang__WEBPACK_IMPORTED_MODULE_0__["default"],
       loading: false
@@ -27616,7 +27616,7 @@ __webpack_require__.r(__webpack_exports__);
         user: this.user,
         key: this.key,
         cwd: this.cwd
-      }).catch(function (error) {
+      }).then(function () {}).catch(function (error) {
         return console.error(error);
       });
     }
@@ -27624,15 +27624,19 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var channel = ws.subscribe('command');
-    channel.on('done', function () {
-      _this.loading = false;
-    });
-    channel.on('output', function (message) {
+    this.$options.channel = ws.subscribe('command');
+    this.$options.channel.on('output', function (message) {
       _this.output.push(message);
     });
+    this.$options.channel.on('done', function () {
+      _this.loading = false;
+    });
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.$options.channel.disconnect();
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -44107,14 +44111,6 @@ var staticRenderFns = [
       _c("a", { staticClass: "brand", attrs: { href: "/" } }, [
         _c("span", [_vm._v("Provisioner")]),
         _c("em", [_vm._v("Desktop")])
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "flex flex-grow justify-end pr-4" }, [
-        _c("li", { staticClass: "block relative self-center" }, [
-          _c("button", { staticClass: "btn btn-gray btn-sm" }, [
-            _vm._v("\n          Servers\n        ")
-          ])
-        ])
       ])
     ])
   },
@@ -56669,6 +56665,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_1__);
 
 
+window.ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_1___default()('ws://127.0.0.1:3333');
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('v-console', __webpack_require__(/*! ./components/ConsoleOutput */ "./resources/js/components/ConsoleOutput.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('v-command', __webpack_require__(/*! ./components/ShellCommand */ "./resources/js/components/ShellCommand.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('v-loading', __webpack_require__(/*! ./components/Loading */ "./resources/js/components/Loading.vue").default);
@@ -56676,7 +56673,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('v-editor', __webpack_requi
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a(__webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue").default);
 document.addEventListener("DOMContentLoaded", function () {
   app.$mount('#app');
-  window.ws = _adonisjs_websocket_client__WEBPACK_IMPORTED_MODULE_1___default()('ws://127.0.0.1:3333');
   ws.connect();
 });
 
@@ -57054,7 +57050,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("#!/usr/bin/env bash\nset -e\ncd devdashboard.app\nphp artisan reset\n");
+/* harmony default export */ __webpack_exports__["default"] = ("#!/usr/bin/env bash\nset -e\nls\n");
 
 /***/ }),
 

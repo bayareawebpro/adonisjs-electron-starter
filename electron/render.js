@@ -1,7 +1,7 @@
 'use strict'
 
 // Boot Adonis Backend Server
-const server = require("../server")
+require("../server")
 
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
@@ -9,11 +9,11 @@ const {app, BrowserWindow} = require('electron')
 // Enable live reload for all the files inside your project directory
 
 // Enable live reload for Electron too
-require('electron-reload')(`${__dirname}/../`, {
-  // Note that the path to electron may vary according to the main file
-  electron: require(`${__dirname}/../node_modules/electron`),
-  server: require(`${__dirname}/../server`),
-});
+// require('electron-reload')(`${__dirname}/../`, {
+//   // Note that the path to electron may vary according to the main file
+//   electron: require(`${__dirname}/../node_modules/electron`),
+//   server: require(`${__dirname}/../server`),
+// });
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -22,8 +22,8 @@ let mainWindow
 // Create the browser window.
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1600,
     height: 1200,
+    width: 1600,
     backgroundColor: '#1a202c',
     webPreferences: {
       preload: './preload.js'
@@ -31,9 +31,7 @@ function createWindow() {
   })
 
   mainWindow.loadURL(`http://localhost:3333`)
-  // if(process.env.NODE_ENV === 'development'){
-  //   mainWindow.loadURL(`http://localhost:3000`)
-  // }
+  // mainWindow.loadURL(`http://localhost:3000`) //Port 3333 (hot reloading).
 
   // Open the DevTools.
   if (process.env.NODE_ENV === 'development') {
@@ -71,7 +69,6 @@ app.on('activate', function () {
     createWindow()
   }
 })
-
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 

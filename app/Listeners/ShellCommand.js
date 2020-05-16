@@ -10,13 +10,11 @@ const {exec} = require('../Services/Shell')
 ShellCommand.local = async ({command}) => {
 
   // Get the broadcasting channel
-  const channel = await websocket
-    .getChannel('command')
-    .topic('command')
+  const channel = websocket.getChannel('command').topic('command')
 
-  // If the channel is listening
+  // If the channel is listening to the topic
   if (channel) {
-    let output = []
+    const output = []
     await exec(command,
       (stdOut) => output.push(stdOut),
       (stdErr) => output.push(stdErr),
@@ -36,35 +34,51 @@ ShellCommand.local = async ({command}) => {
 
 ShellCommand.remote = async ({host, port, user, key, cwd, command}) => {
 
+
   // Get the broadcasting channel
   const channel = await websocket
     .getChannel('command')
     .topic('command')
 
-  // If the channel is listening
+  // If the channel is listening to the topic
   if (channel) {
-    let output = []
+
+    const output = []
     const ssh = new SSH()
-    ssh.connect({
-      host: host,
-      port: port,
-      username: user,
-      privateKey: files.readFileSync(key, 'utf8')
-    })
-    .catch((error)=>output.push(error.toString()))
-    .then(() => ssh.exec(command, [], {
-      onStdout: (chunk) => output.push(chunk.toString('utf8')),
-      onStderr: (chunk) =>output.push(chunk.toString('utf8')),
-      cwd: cwd,
-    }))
-    .finally(()=>{
-      channel.broadcast('done')
-      output
-        .map((line) => line.split('\n'))
-        .flat(1)
-        .forEach((line) => {
-          channel.broadcast('output', line)
+
+    files.readFile(key, (error, data)=>{
+      if(error){
+        channel.broadcast('output', error.toString())
+        channel.broadcast('done')
+        channel.disconnect()
+        return
+      }
+      ssh.connect({
+        host: host,
+        port: port,
+        username: user,
+        privateKey:data.toString()
+      })
+      .then(() => {
+        return ssh.exec(command, [], {
+          onStdout: (chunk) => output.push(chunk.toString()),
+          onStderr: (chunk) =>output.push(chunk.toString()),
+          cwd: cwd,
         })
+      })
+      .then(() => {
+        output
+          .map((line) => line.split('\n'))
+          .flat(1)
+          .forEach((line) => {
+            channel.broadcast('output', line)
+          })
+      })
+      .catch((error)=>output.push(error.toString()))
+      .finally(()=>{
+        channel.broadcast('done')
+        ssh.dispose()
+      })
     })
   }
 }

@@ -24,3 +24,4 @@ new Ignitor(require('@adonisjs/fold'))
   .wsServer()
   .fireHttpServer()
   .catch(console.error)
+

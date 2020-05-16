@@ -1,8 +1,5 @@
 # Adonis.js Electron Starter Project
 
-![Home](https://github.com/bayareawebpro/adonisjs-electron-starter/raw/master/preview.png)
-
-
 ### Installation
 ```js
 npm install

@@ -7,10 +7,10 @@
     components: {Loading},
     data: () => ({
       output: [],
-      port: '22',
-      user: 'forge',
-      key: '/Users/builder/.ssh/id_rsa',
-      host: process.env.MIX_REMOTE_IP || '127.0.0.1',
+      host: process.env.MIX_SSH_HOST || '',
+      port: process.env.MIX_SSH_PORT || '22',
+      user: process.env.MIX_SSH_USER || '',
+      key: process.env.MIX_SSH_KEY || '',
       cwd: '/home/forge',
       command: shebang,
       loading: false,
@@ -31,17 +31,21 @@
             key: this.key,
             cwd: this.cwd,
           })
+          .then(()=>{ })
           .catch((error) => console.error(error))
       }
     },
     created() {
-      const channel = ws.subscribe('command')
-      channel.on('done', () => {
-        this.loading = false
-      })
-      channel.on('output', (message) => {
+      this.$options.channel = ws.subscribe('command')
+      this.$options.channel.on('output', (message) => {
         this.output.push(message)
       })
+      this.$options.channel.on('done', () => {
+        this.loading = false
+      })
+    },
+    beforeDestroy() {
+      this.$options.channel.disconnect()
     }
   }
 </script>

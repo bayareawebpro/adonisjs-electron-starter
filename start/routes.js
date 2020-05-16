@@ -13,4 +13,4 @@ const Route = use('Route')
 
 Route.on('/').render('app')
 
-//Route.post('/command', 'CommandController.index').as('command')
+Route.post('/command', 'CommandController.index').as('command')

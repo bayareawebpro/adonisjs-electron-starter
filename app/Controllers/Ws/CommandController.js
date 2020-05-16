@@ -7,7 +7,7 @@ class CommandController {
     this.request = request
   }
   onMessage (message) {
-    this.socket.broadcastToAll('message', message)
+    this.socket.broadcast('message', message)
   }
   onClose () {
     // same as: socket.on('close')
